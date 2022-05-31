@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
+    <PackageReference Include="Serilog.Exceptions" Version="7.0.0" />
+    <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="8.4.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.5" />
+    <PackageReference Include="MongoDB.Driver" Version="2.13.1" />
+    <PackageReference Include="Confluent.Kafka" Version="1.7.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Consul" Version="1.6.10.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.6" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Remove="Business\" />
+    <None Remove="Business\Contracts\" />
+    <None Remove="Business\Implementation\" />
+    <None Remove="Repository\" />
+    <None Remove="Repository\Contracts\" />
+    <None Remove="Repository\Implementation\" />
+    <None Remove="Config\" />
+    <None Remove="MongoDB.Driver" />
+    <None Remove="Model\" />
+    <None Remove="Exception\" />
+    <None Remove="Kafka\" />
+    <None Remove="Confluent.Kafka" />
+    <None Remove="Microsoft.AspNetCore.Mvc.Versioning" />
+    <None Remove="Consul" />
+    <None Remove="ServiceDiscovery\" />
+    <None Remove="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <None Remove="Middleware\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Business\" />
+    <Folder Include="Business\Contracts\" />
+    <Folder Include="Business\Implementation\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Repository\Contracts\" />
+    <Folder Include="Repository\Implementation\" />
+    <Folder Include="Config\" />
+    <Folder Include="CustomException\" />
+    <Folder Include="Kafka\" />
+    <Folder Include="ServiceDiscovery\" />
+    <Folder Include="Middleware\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Swagger\Extentions.cs" />
+    <Compile Remove="Service\SellerProductService.cs" />
+    <Compile Remove="Service\AddProfileService.cs" />
+  </ItemGroup>
+</Project>
