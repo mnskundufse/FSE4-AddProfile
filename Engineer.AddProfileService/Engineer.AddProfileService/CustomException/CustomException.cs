@@ -2,7 +2,7 @@
 namespace Engineer.AddProfileService.CustomException
 {
     [Serializable]
-    class InvalidExpertiseLevelException : Exception
+    public class InvalidExpertiseLevelException : Exception
     {
         //public InvalidExpertiseLevelException() { }
 
