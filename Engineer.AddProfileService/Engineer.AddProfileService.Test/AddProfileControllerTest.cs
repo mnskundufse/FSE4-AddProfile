@@ -1,36 +1,33 @@
 ﻿using System;
 using Xunit;
 using Moq;
-using Seller.AddProductService.Business.Contracts;
+using Engineer.AddProfileService.Business.Contracts;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using Confluent.Kafka;
-using Seller.AddProductService.Controllers;
-using Seller.AddProductService.Model;
-using Seller.AddProductService.Kafka;
+using Engineer.AddProfileService.Controllers;
+using Engineer.AddProfileService.Model;
+using Engineer.AddProfileService.Kafka;
 using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Seller.AddProductService.Test
+namespace Seller.AddProfileService.Test
 {
-    public class AddProductControllerTest
+    public class AddProfileControllerTest
     {
-        readonly Mock<IAddProductBusiness> _mockProductBusiness = new Mock<IAddProductBusiness>();
+        readonly Mock<IAddProfileBusiness> _mockProfileBusiness = new Mock<IAddProfileBusiness>();
         readonly Mock<IProducerWrapper> _mockProducerWrapper = new Mock<IProducerWrapper>();
-        readonly Mock<ILogger<AddProductController>> _mockLogger = new Mock<ILogger<AddProductController>>();
+        readonly Mock<ILogger<AddProfileController>> _mockLogger = new Mock<ILogger<AddProfileController>>();
         readonly Mock<ProducerConfig> _mockProducerConfig = new Mock<ProducerConfig>();
 
         [Fact]
-        public async Task AddSellerProduct_ValidResponse()
+        public async Task AddUserProfile_ValidResponse()
         {
-            Product request = new Product
+            UserProfile request = new UserProfile
             {
-                ProductName = "xyzabc",
-                ShortDescription = "xyzabc",
-                DetailedDescription = "xyzabc",
-                Category = "Painting",
-                StartingPrice = 10,
-                BidEndDate = DateTime.Now
+                AssociateId = "1",
+                Name = "manas",
+                Mobile = "32314532132"
             };
 
             ApiResponse response = new ApiResponse()
@@ -44,12 +41,12 @@ namespace Seller.AddProductService.Test
                 }
             };
 
-            AddProductController _testObject = new AddProductController(_mockLogger.Object, _mockProducerConfig.Object, _mockProductBusiness.Object, _mockProducerWrapper.Object);
+            AddProfileController _testObject = new AddProfileController(_mockLogger.Object, _mockProducerConfig.Object, _mockProfileBusiness.Object, _mockProducerWrapper.Object);
             ProducerWrapper _producerTestObject = new ProducerWrapper(_mockProducerConfig.Object);
             Mock<IProducer<string, string>> _mockProducerBuilder = new Mock<IProducer<string, string>>();
             _mockProducerWrapper.Setup(x => x.WriteMessage(It.IsAny<string>(), It.IsAny<string>()));
-            _mockProductBusiness.Setup(x=>x.AddSellerProductBusiness(It.IsAny<Product>())).Returns(Task.FromResult(response));
-            var result = (ObjectResult) await _testObject.AddSellerProduct(request);
+            _mockProfileBusiness.Setup(x => x.AddUserProfileBusiness(It.IsAny<UserProfile>())).Returns(Task.FromResult(response));
+            var result = (ObjectResult)await _testObject.AddUserProfile(request);
 
             ApiResponse apiResponse = (ApiResponse)result.Value;
 
