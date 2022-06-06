@@ -1,15 +1,13 @@
-﻿using System;
-using Xunit;
-using Moq;
-using Engineer.AddProfileService.Business.Contracts;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Confluent.Kafka;
+using Engineer.AddProfileService.Business.Contracts;
 using Engineer.AddProfileService.Controllers;
-using Engineer.AddProfileService.Model;
 using Engineer.AddProfileService.Kafka;
-using System.Threading;
+using Engineer.AddProfileService.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Moq;
+using Xunit;
 
 namespace Seller.AddProfileService.Test
 {
@@ -57,6 +55,7 @@ namespace Seller.AddProfileService.Test
             Assert.Equal("SUCCESS", apiResponse.Status.Status);
             Assert.Empty(apiResponse.Status.Message);
         }
+
         [Fact]
         public async Task AddUserProfile_invalidRequest()
         {

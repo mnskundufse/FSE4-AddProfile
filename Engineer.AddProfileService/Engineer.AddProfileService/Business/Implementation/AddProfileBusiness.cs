@@ -16,6 +16,11 @@ namespace Engineer.AddProfileService.Business.Implementation
             _repo = repo;
         }
 
+        /// <summary>
+        /// Insert User Profile (Business)
+        /// </summary>
+        /// <param name="userProfile"></param>
+        /// <returns></returns>
         public async Task<ApiResponse> AddUserProfileBusiness(UserProfile userProfile)
         {
             ApiResponse response = new ApiResponse();
@@ -85,12 +90,14 @@ namespace Engineer.AddProfileService.Business.Implementation
                     string value = (string)pi.GetValue(myObject);
                     if (string.IsNullOrEmpty(value) || !(int.TryParse(value, out int numericValue)))
                     {
+                        //Expertise level for each skill set must not be empty or non-numeric value, else throw a custom exception
                         throw new InvalidExpertiseLevelException(value);
                     }
                     else
                     {
                         if (numericValue < 0 || numericValue > 20)
                         {
+                            //Expertise level for each skill set must range between 0-20, else throw a custom exception
                             throw new InvalidExpertiseLevelException(numericValue);
                         }
                     }

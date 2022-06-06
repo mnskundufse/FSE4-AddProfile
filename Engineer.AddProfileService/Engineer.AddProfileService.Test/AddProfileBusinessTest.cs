@@ -1,29 +1,17 @@
 ﻿using System;
-using Xunit;
-using Moq;
-using Engineer.AddProfileService.Business.Contracts;
-using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using Confluent.Kafka;
-using Engineer.AddProfileService.Controllers;
-using Engineer.AddProfileService.Model;
-using Engineer.AddProfileService.Kafka;
-using System.Threading;
-using Microsoft.AspNetCore.Mvc;
-using Engineer.AddProfileService.CustomException;
-using Engineer.AddProfileService.Repository.Contracts;
 using Engineer.AddProfileService.Business.Implementation;
-using Engineer.AddProfileService;
+using Engineer.AddProfileService.CustomException;
+using Engineer.AddProfileService.Model;
+using Engineer.AddProfileService.Repository.Contracts;
+using Moq;
+using Xunit;
 
 namespace Seller.AddProfileService.Test
 {
     public class AddProfileBusinessTest
     {
-        readonly Mock<IAddProfileBusiness> _mockProfileBusiness = new Mock<IAddProfileBusiness>();
-        readonly Mock<IProducerWrapper> _mockProducerWrapper = new Mock<IProducerWrapper>();
         readonly Mock<IAddProfileRepository> _mockAddProfileRepo = new Mock<IAddProfileRepository>();
-        readonly Mock<ILogger<AddProfileController>> _mockLogger = new Mock<ILogger<AddProfileController>>();
-        readonly Mock<ProducerConfig> _mockProducerConfig = new Mock<ProducerConfig>();
 
         [Fact]
         public async Task AddUserProfileBusiness_ValidRequest()
