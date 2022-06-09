@@ -18,6 +18,6 @@
     <None Remove="Moq" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Seller.AddProductService\Seller.AddProductService.csproj" />
+    <ProjectReference Include="..\Engineer.AddProfileService\Engineer.AddProfileService.csproj" />
   </ItemGroup>
 </Project>

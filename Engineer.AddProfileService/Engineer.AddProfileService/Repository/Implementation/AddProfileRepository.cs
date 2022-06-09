@@ -14,11 +14,20 @@ namespace Engineer.AddProfileService.Repository.Implementation
             _context = context;
         }
 
+        /// <summary>
+        /// Insert User Profile (Repository)
+        /// </summary>
+        /// <param name="userProfile"></param>
+        /// <returns></returns>
         public async Task AddUserProfileRepository(UserProfile userProfile)
         {
             await _context.UserProfile.InsertOneAsync(userProfile);
         }
 
+        /// <summary>
+        /// Search for next available user id
+        /// </summary>
+        /// <returns></returns>
         public async Task<long> GetNextUserId()
         {
             long currentLatestUserId = 0;

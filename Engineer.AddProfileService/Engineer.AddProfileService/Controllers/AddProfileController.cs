@@ -29,6 +29,11 @@ namespace Engineer.AddProfileService.Controllers
             _config = config;
         }
 
+        /// <summary>
+        /// Insert User Profile
+        /// </summary>
+        /// <param name="userProfile"></param>
+        /// <returns></returns>
         [MapToApiVersion("1.0")]
         [Authorize]
         [HttpPost("add-profile")]
